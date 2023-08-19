@@ -3,6 +3,22 @@ from PIL import ImageFont, ImageDraw, Image
 import argparse
 
 
+## Up margin is wrong : I fix it by checking the first row that hase a non-transparent pixel in it
+def fixUpMargin(img: Image, draw: ImageDraw):
+    upMargin = 0
+
+    ok = False
+
+    while not ok:
+        for i in range(img.size[0]):
+            print(img.getpixel((i, upMargin)))
+            if (img.getpixel((i, upMargin))[3]) > 0:
+                ok = True
+        upMargin += 1
+
+    return img.crop((0, upMargin, img.size[0], img.size[1]))
+
+
 def createImageWithText(imgLength, txt: str, save):
     txt = txt.strip()
     fontsize = 1  # starting font size
@@ -22,7 +38,7 @@ def createImageWithText(imgLength, txt: str, save):
 
     print("final font size", fontsize)
 
-    trashImage = Image.new("RGB", (1, 1))
+    trashImage = Image.new("RGB", (imgLength, imgLength))
     trashDraw = ImageDraw.Draw(trashImage)
 
     bbox = trashDraw.multiline_textbbox((0, 0), text=txt, font=font)
@@ -32,7 +48,11 @@ def createImageWithText(imgLength, txt: str, save):
     image = Image.new(mode="RGBA", size=(bbox[2], bbox[3]), color=(0, 0, 0, 0))
     draw = ImageDraw.Draw(image)
 
-    draw.text((0, 0), txt, (255, 255, 255), font=font)  # put the text on the image
+    draw.text(
+        (0, 0), txt, (255, 255, 255), font=font, spacing=0
+    )  # put the text on the image
+
+    image = fixUpMargin(image, draw)
 
     if save:
         image.save(txt + "_" + str(imgLength) + "*" + str(image.size[1]) + ".png")
