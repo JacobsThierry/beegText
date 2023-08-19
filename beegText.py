@@ -33,7 +33,7 @@ def createImageWithText(imgLength, txt: str):
     draw.text((0, 0), txt, (255, 255, 255), font=font)  # put the text on the image
 
     image.save(txt + "_" + str(imgLength) + "*" + str(image.size[1]) + ".png")
-    image.show()
+    image.show(txt)
 
 
 if __name__ == "__main__":
