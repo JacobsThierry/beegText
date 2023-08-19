@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from PIL import ImageFont, ImageDraw, Image
 
 
