@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 from PIL import ImageFont, ImageDraw, Image
+import argparse
 
 
-def createImageWithText(imgLength, txt: str):
+def createImageWithText(imgLength, txt: str, save):
     txt = txt.strip()
     fontsize = 1  # starting font size
 
@@ -33,13 +34,30 @@ def createImageWithText(imgLength, txt: str):
 
     draw.text((0, 0), txt, (255, 255, 255), font=font)  # put the text on the image
 
-    image.save(txt + "_" + str(imgLength) + "*" + str(image.size[1]) + ".png")
+    if save:
+        image.save(txt + "_" + str(imgLength) + "*" + str(image.size[1]) + ".png")
     image.show(txt)
 
 
-if __name__ == "__main__":
+def test():
     txt = "beegText"
     createImageWithText(1000, txt)
     createImageWithText(100, txt)
     txt = "Very Very \n beeg Text"
     createImageWithText(1000, txt)
+
+
+parser = argparse.ArgumentParser(prog="beegText")
+parser.add_argument("txt", type=str)
+parser.add_argument("--size", type=int)
+parser.add_argument("--save", action="store_true")
+
+if __name__ == "__main__":
+    args = parser.parse_args()
+
+    size = 1000
+
+    if args.size:
+        size = args.size
+
+    createImageWithText(size, args.txt, args.save)
