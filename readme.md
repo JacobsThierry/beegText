@@ -1,4 +1,4 @@
-![Introducing beegText](readmePic/intro.png?raw=true "Title")
+![Introducing beegText](readmePic/intro.jpg?raw=true "Title")
 
 Beeg text is a text-to-image generator that allows you to create an image only containing your text and a transparent background.
 
@@ -11,7 +11,7 @@ This tool was mainly made to scream in a discord channel
 - Auto save
 - M U L T I L I N E
 
-![Multiline](readmePic/multiLine.png?raw=true "Title")
+![Multiline](readmePic/multiLine.jpg?raw=true "Title")
 
 ## Getting Started
 
