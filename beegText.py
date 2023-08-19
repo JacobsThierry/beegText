@@ -11,7 +11,6 @@ def fixUpMargin(img: Image, draw: ImageDraw):
 
     while not ok:
         for i in range(img.size[0]):
-            print(img.getpixel((i, upMargin)))
             if (img.getpixel((i, upMargin))[3]) > 0:
                 ok = True
         upMargin += 1
@@ -75,7 +74,7 @@ parser.add_argument("--save", action="store_true")
 if __name__ == "__main__":
     args = parser.parse_args()
 
-    size = 1000
+    size = 750
 
     if args.size:
         size = args.size
