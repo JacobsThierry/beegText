@@ -1,4 +1,4 @@
-![Introducing beegText](readmePic/intro.jpg?raw=true "Title")
+![Introducing beegText](readmePic/Intro.jpg?raw=true "Title")
 
 Beeg text is a text-to-image generator that allows you to create an image only containing your text and a transparent background.
 
