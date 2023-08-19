@@ -35,14 +35,10 @@ def createImageWithText(imgLength, txt: str, save):
     fontsize -= 1
     font = ImageFont.truetype(fontname, fontsize)
 
-    print("final font size", fontsize)
-
     trashImage = Image.new("RGB", (imgLength, imgLength))
     trashDraw = ImageDraw.Draw(trashImage)
 
     bbox = trashDraw.multiline_textbbox((0, 0), text=txt, font=font)
-
-    print(bbox)
 
     image = Image.new(mode="RGBA", size=(bbox[2], bbox[3]), color=(0, 0, 0, 0))
     draw = ImageDraw.Draw(image)
